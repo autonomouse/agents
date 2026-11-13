@@ -138,7 +138,7 @@ import {
 import { stripCodeSessionFileSummary } from '@/tools/CodeSessionFileSummary';
 import { Constants, GraphEvents, CODE_EXECUTION_TOOLS } from '@/common';
 import { ProviderTextProtectionError } from '@/protection/providerText';
-import { formatToolErrorContent } from '@/tools/toolErrorContent';
+import { TOOL_ERROR_RETRY_HINT, formatToolErrorContent } from '@/tools/toolErrorContent';
 import { PreparedSubagentError } from '@/tools/preparedSubagents';
 import { attachRunStepResumeState } from '@/tools/runStepResume';
 import { isBackgroundDenyMode } from '@/types/hitl';
@@ -5765,7 +5765,7 @@ export class ToolNode<T = any> extends RunnableCallable<T, T> {
             status: 'error',
             content: truncateToolResultContent(
               `Error: ${call.error ?? 'Malformed tool call arguments.'} ` +
-                'The tool call input could not be parsed as a JSON object; the tool was not run.\n Please fix your mistakes.',
+                `The tool call input could not be parsed as a JSON object; the tool was not run.\n ${TOOL_ERROR_RETRY_HINT}`,
               this.maxToolResultChars
             ),
             name: normalizeInvalidCallName(call.name),

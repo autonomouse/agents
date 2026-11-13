@@ -147,7 +147,7 @@ describe('ToolNode breaker signal composition', () => {
 
     expect(result.messages[0].status).toBe('error');
     expect(result.messages[0].content).toContain('STOP what you are doing');
-    expect(result.messages[0].content).not.toContain('Please fix your mistakes');
+    expect(result.messages[0].content).not.toContain('Please check the error');
   });
 
   it('leaves the caller signal untouched when no breaker accessor is set', async () => {
