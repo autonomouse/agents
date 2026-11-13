@@ -34,10 +34,10 @@ describe('formatToolErrorContent', () => {
     controller.abort();
     expect(
       formatToolErrorContent('Permission denied', maxChars, controller.signal)
-    ).toBe('Error: Permission denied\n Please fix your mistakes.');
+    ).toBe('Error: Permission denied\n Please check the error and correct the tool call if needed.');
     expect(
       formatToolErrorContent('AbortError: remote timeout', maxChars)
-    ).toBe('Error: AbortError: remote timeout\n Please fix your mistakes.');
+    ).toBe('Error: AbortError: remote timeout\n Please check the error and correct the tool call if needed.');
   });
 
   it('recognizes direct-tool abort errors and the owning signal reason', () => {
@@ -68,12 +68,12 @@ describe('formatToolErrorContent', () => {
     );
     expect(
       formatToolErrorContent('AbortError', maxChars, breaker.signal)
-    ).toBe('Error: AbortError\n Please fix your mistakes.');
+    ).toBe('Error: AbortError\n Please check the error and correct the tool call if needed.');
 
     const preparation = new AbortController();
     preparation.abort(new PreparedSubagentError('child run failed'));
     expect(
       formatToolErrorContent('AbortError', maxChars, preparation.signal)
-    ).toBe('Error: AbortError\n Please fix your mistakes.');
+    ).toBe('Error: AbortError\n Please check the error and correct the tool call if needed.');
   });
 });

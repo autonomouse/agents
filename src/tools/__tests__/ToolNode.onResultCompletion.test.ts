@@ -555,7 +555,7 @@ describe('ToolNode per-call onResult completion emission', () => {
       const content = String(result.messages[0].content);
       expect(result.messages[0].status).toBe('error');
       expect(content).toContain('STOP what you are doing');
-      expect(content).not.toContain('Please fix your mistakes');
+      expect(content).not.toContain('Please check the error');
       expect(completions).toHaveLength(1);
       expect(completions[0].result.tool_call.output).toBe(content);
     }
@@ -608,7 +608,7 @@ describe('ToolNode per-call onResult completion emission', () => {
 
     expect(completions).toHaveLength(1);
     expect(completions[0].result.tool_call.output).toBe(
-      'Error: city not found\n Please fix your mistakes.'
+      'Error: city not found\n Please check the error and correct the tool call if needed.'
     );
   });
 });

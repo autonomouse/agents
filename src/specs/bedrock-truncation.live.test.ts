@@ -66,7 +66,7 @@ describeIfLive('Bedrock tool-call truncation (live)', () => {
           contentLen: hasContent ? input.content.length : null,
         });
         if (!hasContent) {
-          return 'Error: content is required\n Please fix your mistakes.';
+          return 'Error: content is required\n Please check the error and correct the tool call if needed.';
         }
         return `Wrote ${input.content.length} bytes to ${input.path}`;
       },

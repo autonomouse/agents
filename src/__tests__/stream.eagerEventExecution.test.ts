@@ -2805,7 +2805,7 @@ describe('ChatModelStreamHandler eager event tool execution', () => {
 
     const output = completedEvents[0]?.result.tool_call?.output;
     expect(output).toContain('STOP what you are doing');
-    expect(output).not.toContain('Please fix your mistakes');
+    expect(output).not.toContain('Please check the error');
   });
 
   it('serializes bigint output before eager completion dispatch', async () => {
